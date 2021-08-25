@@ -1,0 +1,12 @@
+{
+  "name": "commits-history",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fe": "cd commits-history-ng && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sujit",
+  "license": "ISC"
+}
