@@ -1,0 +1,31 @@
+<div class="page-home">
+  <div class="page-content">
+    <div class="date-range-selector">
+      <mat-form-field appearance="fill">
+        <mat-label>Select date range</mat-label>
+        <mat-date-range-input [formGroup]="dateRange" [rangePicker]="rangePicker">
+          <input matStartDate formControlName="since" placeholder="Start date">
+          <input matEndDate formControlName="until" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+  
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+    <div class="commits-list">
+      <cmp-loading *ngIf="loading"></cmp-loading>
+      <div class="details" *ngIf="fetchedCommits && fetchedCommits.length; else noData">
+        <cmp-commit-card *ngFor="let commit of fetchedCommits" [commit]="commit"></cmp-commit-card>
+      </div>
+      <ng-template #noData>
+        <cmp-loading *ngIf="!loading" content="No data found. Change date range."></cmp-loading>
+      </ng-template>
+    </div>
+  </div>
+</div>

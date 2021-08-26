@@ -1,0 +1,12 @@
+<mat-card class="file-changes-card">
+  <mat-card-header>
+    <mat-card-subtitle>
+      <a [href]="file.raw_url" target="_blank">{{file.filename}}</a>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Additions - {{file.additions}}, Changes - {{file.changes}}, Deletions - {{file.deletions}}
+    </p>
+  </mat-card-content>
+</mat-card>

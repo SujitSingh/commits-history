@@ -1,0 +1,30 @@
+.commit-card {
+  margin: 5px 0;
+  display: grid;
+  grid-gap: 5px;
+  .commit-message {
+    font-weight: 700;
+  }
+  .commit-info {
+    display: flex;
+    align-items: center;
+    a {
+      margin-right: 10px;
+    }
+    .user-avatar {
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      img {
+        border-radius: 50%;
+        max-width: 100%;
+      }
+    }
+    .hash-detail {
+      margin-left: auto;
+      span {
+        color: #888;
+      }
+    }
+  }
+}

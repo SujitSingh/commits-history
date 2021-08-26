@@ -1,0 +1,20 @@
+<mat-card class="commit-card">
+  <div class="commit-message">
+    <a *ngIf="!detailsView" [routerLink]="'/commit/' + commit.sha" class="ellipses">
+      {{commit.commit.message}}
+    </a>
+    <span *ngIf="detailsView">{{commit.commit.message}}</span>
+  </div>
+  <div class="commit-info">
+    <a [href]="commit.committer.html_url" class="user-avatar" target="_blank">
+      <img [src]="commit.committer.avatar_url" [alt]="commit.committer.login" />
+    </a>
+    <a mat-button-flat [href]="commit.committer.html_url" target="_blank">
+      <strong>{{commit.committer.login}}</strong>
+    </a>
+    <span>committed on {{commit.commit.committer.date | date}}</span>
+    <div *ngIf="detailsView" class="hash-detail">
+      commit <span>{{commit.sha}}</span>
+    </div>
+  </div>
+</mat-card>

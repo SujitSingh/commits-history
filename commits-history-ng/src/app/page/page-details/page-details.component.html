@@ -1,0 +1,17 @@
+<div class="page-details">
+  <div class="page-content">
+    <cmp-loading *ngIf="loading"></cmp-loading>
+    <div class="details" *ngIf="commit">
+      <cmp-commit-card [commit]="commit" [detailsView]="true"></cmp-commit-card>
+      <div class="changes">
+        <div class="changes-heading">
+          Showing <strong>{{commit.files.length}} changed files</strong> with <strong>{{commit.stats.additions}} additions</strong> and <strong>{{commit.stats.deletions}} deletions</strong>
+        </div>
+  
+        <div class="commit-changes">
+          <cmp-file-changes-card *ngFor="let file of commit.files" [file]="file" class="file-changes-card"></cmp-file-changes-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
