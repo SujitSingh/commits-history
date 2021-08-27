@@ -16,10 +16,12 @@ class LogCommitsEntry {
             return;
           }
           this.initializeWriteStream();
+          this.initializeChangeWatcher();
         });
       }
       // file exists, initialize write stream
       this.initializeWriteStream();
+      this.initializeChangeWatcher();
     });
   }
   
@@ -28,6 +30,29 @@ class LogCommitsEntry {
     this.writeStream = fs.createWriteStream(this.entryFilePath, {
       flags: 'a',
       encoding: 'utf8'
+    });
+  }
+
+  initializeChangeWatcher() {
+    // file changes watcher
+    fs.watchFile(this.entryFilePath, { persistent: true }, (curr, prev) => {
+      // find new content length
+      let start = prev.size,
+          end = curr.size;
+      let contentLen = end - start;
+
+      const buffer = Buffer.alloc(contentLen);
+      fs.open(this.entryFilePath, 'r', (error, fd) => {
+        // read content in file within range
+        fs.read(fd, buffer, 0, contentLen, start, (error, bytes, buff) => {
+          if (error) {
+            return;
+          }
+          // add logs regarding new entry
+          const newContent = buff.toString().trim();
+          console.table([{ 'Date-Time': new Date().toUTCString(), 'New Content': newContent }]);
+        });
+      });
     });
   }
 
